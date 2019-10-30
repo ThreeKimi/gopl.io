@@ -28,4 +28,36 @@ func PopCount(x uint64) int {
 		pc[byte(x>>(7*8))])
 }
 
+//ext2.3
+func PopCount23(x uint64) int {
+  var count int
+  for i := 0; i<8; i++ {
+    count += int(pc[byte(x>>uint(i*8))])
+  }
+  return count
+}
+
+//ext2.4
+func PopCount24(x uint64) int {
+  var count int
+  for ; x != 0;{
+   if x&1 == 1 {
+     count += 1
+   } 
+   x >>= 1
+  }
+  return count
+}
+
+//ext2.5
+func PopCount25(x uint64) int {
+  count := 0
+  for ; x != 0; {
+    x = x&(x-1)
+    count += 1
+  }
+  return count
+}
+
+
 //!-
